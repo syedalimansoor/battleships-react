@@ -2,7 +2,7 @@ export type Game = {
   players: PlayersList;
   turn: PlayerIndex;
   phase: GamePhase;
-  winner: PlayerIndex;
+  winner: PlayerIndex | null;
 };
 
 export type PlayersList = [Player, Player];
@@ -10,24 +10,20 @@ export type PlayersList = [Player, Player];
 export type Player = {
   name: string;
   isHuman: boolean;
-  fleet: Ship[];
-  grid: Square[][];
+  fleet: Fleet;
+  grid: Grid;
   hits: number;
   misses: number;
 };
 
-export type Ship =
-  | {
-      isPlaced: boolean;
-      isPositionValid: boolean;
-      orientation: ShipOrientation;
-      squares: Square[];
-    }
-  | Carrier
-  | Battleship
-  | Destroyer
-  | Submarine
-  | PatrolBoat;
+export type Ship = {
+  isPlaced: boolean;
+  isPositionValid: boolean;
+  orientation: ShipOrientation;
+  squares: Square[];
+} & (Carrier | Battleship | Destroyer | Submarine | PatrolBoat);
+
+export type Fleet = Ship[];
 
 export type Square = {
   location: SquareLocation;
@@ -35,12 +31,17 @@ export type Square = {
   isHit: boolean;
 };
 
+export type Grid = Square[][];
+
 export type SquareLocation = {
   row: number;
   column: number;
 };
 
-export type ShipOrientation = "horizontal" | "vertical";
+export enum ShipOrientation {
+  Horizontal,
+  Vertical,
+}
 
 export type PlayerIndex = 0 | 1;
 
