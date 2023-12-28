@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "../styles/theme";
 import CSSReset from "../styles/CSSReset";
 import GlobalStyle from "../styles/GlobalStyle";
+import FontDeclarations from "../styles/FontDeclarations";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CSSReset />
+      <FontDeclarations />
       <GlobalStyle />
       <RouterProvider router={router} />
     </ThemeProvider>
