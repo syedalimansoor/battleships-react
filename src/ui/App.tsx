@@ -4,11 +4,12 @@ import theme from "./styles/theme";
 import CSSReset from "./styles/CSSReset";
 import GlobalStyle from "./styles/GlobalStyle";
 import FontDeclarations from "./styles/FontDeclarations";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Aye world!</div>,
+    element: <Home />,
   },
 ]);
 
