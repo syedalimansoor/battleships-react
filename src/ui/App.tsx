@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import theme from "../styles/theme";
-import CSSReset from "../styles/CSSReset";
-import GlobalStyle from "../styles/GlobalStyle";
-import FontDeclarations from "../styles/FontDeclarations";
+import theme from "./styles/theme";
+import CSSReset from "./styles/CSSReset";
+import GlobalStyle from "./styles/GlobalStyle";
+import FontDeclarations from "./styles/FontDeclarations";
 
 const router = createBrowserRouter([
   {
