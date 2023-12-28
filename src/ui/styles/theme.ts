@@ -11,6 +11,15 @@ const theme = {
 
     red5: "#EC6666",
   },
+
+  font: {
+    family: {
+      primary:
+        "Kollektif, Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif",
+      display:
+        "ChunkFive, Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif",
+    },
+  },
 };
 
 export type Theme = typeof theme;
