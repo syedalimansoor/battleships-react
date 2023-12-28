@@ -19,6 +19,10 @@ const theme = {
       display:
         "ChunkFive, Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif",
     },
+
+    size: {
+      base: "16px",
+    },
   },
 };
 
