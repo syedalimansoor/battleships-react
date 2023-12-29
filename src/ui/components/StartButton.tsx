@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function StartButton() {
-  return <Button>Press to begin!</Button>;
+  return (
+    <Link to="/planning">
+      <Button>Press to begin!</Button>
+    </Link>
+  );
 }
 
 const Button = styled.button`
