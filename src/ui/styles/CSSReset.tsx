@@ -29,6 +29,9 @@ const CSSReset = createGlobalStyle`
   #root, #__next {
     isolation: isolate;
   }
+  a {
+    color: inherit;
+  }
 `;
 
 export default CSSReset;
