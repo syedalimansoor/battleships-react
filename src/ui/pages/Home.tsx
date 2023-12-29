@@ -12,8 +12,10 @@ export default function Home() {
       <ContentWrapper>
         <HomeWrapper>
           <ShipLogo />
-          <BattleshipsWordmark title="Battleships" />
-          <Subtitle>navigate, annihilate, conquer</Subtitle>
+          <Header>
+            <BattleshipsWordmark title="Battleships" />
+            <Subtitle>navigate, annihilate, conquer</Subtitle>
+          </Header>
           <PlayerNameField />
           <StartButton />
           <Footer>
@@ -35,6 +37,12 @@ const HomeWrapper = styled.main`
   place-content: center;
   place-items: center;
   gap: 50px;
+`;
+
+const Header = styled.div`
+  display: grid;
+  justify-items: center;
+  gap: 20px;
 `;
 
 const Subtitle = styled.p`
