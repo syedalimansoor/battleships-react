@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ContentWrapper from "ui/layouts/ContentWrapper";
 import ShipBackground from "ui/layouts/ShipBackground";
 import ShipLogo from "ui/assets/ship-logo.svg?react";
-import BattleshipsWordmark from "ui/assets/battleships-wordmark.svg?react";
+import BattleshipsWordmark from "ui/assets/battleships-wordmark-double.svg?react";
 import PlayerNameField from "ui/components/PlayerNameField";
 import StartButton from "ui/components/StartButton";
 
