@@ -1,9 +1,22 @@
 import styled from "styled-components";
+import { usePlayerName } from "ui/stores/game";
+import { ChangeEvent } from "react";
 
 export default function PlayerNameField() {
+  const [playerName, setPlayerName] = usePlayerName(0);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPlayerName(e.target.value);
+  };
+
   return (
     <Wrapper>
-      <Input id="playerName" placeholder="The Conqueror" />
+      <Input
+        id="playerName"
+        placeholder="The Conqueror"
+        value={playerName}
+        onChange={handleChange}
+      />
       <Label htmlFor="playerName">player name</Label>
     </Wrapper>
   );
