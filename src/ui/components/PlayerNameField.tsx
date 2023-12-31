@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { usePlayerName } from "ui/stores/game";
-import { ChangeEvent } from "react";
+import { useHandleChange } from "ui/utils/hooks";
 
 export default function PlayerNameField() {
   const [playerName, setPlayerName] = usePlayerName(0);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPlayerName(e.target.value);
-  };
+  const handleChange = useHandleChange(setPlayerName);
 
   return (
     <Wrapper>
