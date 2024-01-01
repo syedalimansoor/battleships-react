@@ -24,6 +24,10 @@ const theme = {
       base: "16px",
     },
   },
+
+  padding: {
+    inline: "20px",
+  },
 };
 
 export type Theme = typeof theme;
