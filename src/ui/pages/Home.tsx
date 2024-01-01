@@ -8,7 +8,7 @@ import StartButton from "ui/components/StartButton";
 
 export default function Home() {
   return (
-    <ShipBackground>
+    <StyledShipBackground>
       <ContentWrapper>
         <HomeWrapper>
           <ShipLogo />
@@ -26,9 +26,14 @@ export default function Home() {
           </Footer>
         </HomeWrapper>
       </ContentWrapper>
-    </ShipBackground>
+    </StyledShipBackground>
   );
 }
+
+const StyledShipBackground = styled(ShipBackground)`
+  display: grid;
+  place-items: stretch;
+`;
 
 const HomeWrapper = styled.main`
   width: 100%;
