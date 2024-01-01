@@ -5,11 +5,22 @@ import CSSReset from "./styles/CSSReset";
 import GlobalStyle from "./styles/GlobalStyle";
 import FontDeclarations from "./styles/FontDeclarations";
 import Home from "./pages/Home";
+import Planning from "./pages/Planning";
+import Header from "./layouts/Header";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    element: <Header />,
+    children: [
+      {
+        path: "planning",
+        element: <Planning />,
+      },
+    ],
   },
 ]);
 
