@@ -14,9 +14,9 @@ export default function ContentWrapper({
 
 const OuterWrapper = styled.div`
   width: 100%;
-  /* height: 100%; */
   display: grid;
   place-items: center;
+  padding-inline: ${(p) => p.theme.padding.inline};
 `;
 
 const InnerWrapper = styled.div`
