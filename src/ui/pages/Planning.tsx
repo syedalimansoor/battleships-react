@@ -6,7 +6,7 @@ export default function Planning() {
   return (
     <ContentWrapper>
       <PageWrapper>
-        <Grid />
+        <Grid idx={0} />
         <p>bye</p>
       </PageWrapper>
     </ContentWrapper>

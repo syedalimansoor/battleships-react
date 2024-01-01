@@ -1,8 +1,18 @@
 import { GRID_SIZE } from "src/domain/constants";
+import { PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
+import { useGrid } from "../stores/game";
 
-export default function Grid() {
-  return <StyledGrid>Grid</StyledGrid>;
+type Props = {
+  idx: PlayerIndex;
+};
+
+export default function Grid(props: Props) {
+  const [grid, setGrid] = useGrid(props.idx);
+
+  return (
+    <StyledGrid>{grid.map((row) => row.map(() => <Square />))}</StyledGrid>
+  );
 }
 
 const StyledGrid = styled.div`
@@ -14,4 +24,13 @@ const StyledGrid = styled.div`
 
   display: grid;
   grid-template: repeat(${GRID_SIZE}, 1fr) / repeat(${GRID_SIZE}, 1fr);
+`;
+
+const Square = styled.div`
+  &:not(:nth-of-type(${GRID_SIZE}n + 1)) {
+    border-left: 3px solid ${(p) => p.theme.color.blue5};
+  }
+  &:nth-of-type(n + ${GRID_SIZE + 1}) {
+    border-top: 3px solid ${(p) => p.theme.color.blue5};
+  }
 `;
