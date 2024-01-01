@@ -6,11 +6,11 @@ import { Game } from "src/domain/game";
 const $game = deepMap<Game>(initializeGame());
 export default $game;
 
-export function usePlayerName(idx: number) {
-  const game = useStore($game, { keys: ["players[0].name"] });
+export function usePlayerName(idx: PlayerIndex) {
+  const game = useStore($game, { keys: [`players[${idx}].name`] });
 
-  const setPlayerName = (name: string) => {
-    $game.setKey(`players[${idx}].name`, name);
+  const setPlayerName = (newName: string) => {
+    $game.setKey(`players[${idx}].name`, newName);
   };
 
   return [game.players[idx].name, setPlayerName] as const;
