@@ -5,7 +5,7 @@ import ResetIcon from "ui/assets/icon-reset.svg?react";
 
 export default function Header() {
   return (
-    <>
+    <FullHeightWrapper>
       <StyledHeader>
         <StyledBattleshipsWordmark />
         <ResetButton>
@@ -13,11 +13,22 @@ export default function Header() {
         </ResetButton>
       </StyledHeader>
       <Outlet />
-    </>
+    </FullHeightWrapper>
   );
 }
 
+const FullHeightWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    flex-grow: 1;
+  }
+`;
+
 const StyledHeader = styled.header`
+  flex-grow: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
