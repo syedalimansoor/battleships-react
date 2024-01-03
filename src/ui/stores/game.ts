@@ -1,7 +1,7 @@
 import { useStore } from "@nanostores/react";
 import { deepMap } from "nanostores";
 import { initializeGame } from "src/domain/functions";
-import { Game, PlayerIndex } from "src/domain/game";
+import { Game, Player, PlayerIndex } from "src/domain/game";
 
 const $game = deepMap<Game>(initializeGame());
 export default $game;
@@ -20,4 +20,10 @@ export function useGrid(idx: PlayerIndex) {
   const game = useStore($game, { keys: [`players[${idx}].grid`] });
 
   return [game.players[idx].grid] as const;
+}
+
+export function useFleet(idx: PlayerIndex) {
+  const game = useStore($game, { keys: [`players[${idx}].fleet`] });
+
+  return [game.players[idx].fleet] as const;
 }
