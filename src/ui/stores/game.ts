@@ -1,7 +1,7 @@
 import { useStore } from "@nanostores/react";
 import { deepMap } from "nanostores";
 import { initializeGame } from "src/domain/functions";
-import { Game, Player, PlayerIndex } from "src/domain/game";
+import { Game, PlayerIndex } from "src/domain/game";
 
 const $game = deepMap<Game>(initializeGame());
 export default $game;
