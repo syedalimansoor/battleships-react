@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import BattleshipsWordmark from "ui/assets/battleships-wordmark-single.svg?react";
 import ResetIcon from "ui/assets/icon-reset.svg?react";
@@ -7,7 +7,9 @@ export default function Header() {
   return (
     <FullHeightWrapper>
       <StyledHeader>
-        <StyledBattleshipsWordmark />
+        <Link to={"/"}>
+          <StyledBattleshipsWordmark />
+        </Link>
         <ResetButton>
           <StyledResetIcon />
         </ResetButton>
