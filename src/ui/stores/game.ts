@@ -19,9 +19,5 @@ export function usePlayerName(idx: PlayerIndex) {
 export function useGrid(idx: PlayerIndex) {
   const game = useStore($game, { keys: [`players[${idx}].grid`] });
 
-  const setGrid = (newGrid: Grid) => {
-    $game.setKey(`players[${idx}].grid`, newGrid);
-  };
-
-  return [game.players[idx].grid, setGrid] as const;
+  return [game.players[idx].grid] as const;
 }

@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function Grid(props: Props) {
-  const [grid, setGrid] = useGrid(props.idx);
+  const [grid] = useGrid(props.idx);
 
   return (
     <StyledGrid>{grid.map((row) => row.map(() => <Square />))}</StyledGrid>
