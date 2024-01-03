@@ -3,6 +3,7 @@ import ContentWrapper from "ui/layouts/ContentWrapper";
 import Grid from "../components/Grid";
 import Heading from "../components/common/Heading";
 import Subheading from "../components/common/Subheading";
+import ShipSelector from "../components/ShipSelector";
 
 export default function Planning() {
   return (
@@ -10,7 +11,8 @@ export default function Planning() {
       <PageWrapper>
         <Grid idx={0} />
         <Heading>Place your ships</Heading>
-        <Subheading>Tap on a ship to select it.</Subheading>
+        <StyledSubheading>Tap on a ship to select it.</StyledSubheading>
+        <ShipSelector idx={0} />
       </PageWrapper>
     </ContentWrapper>
   );
@@ -21,4 +23,8 @@ const PageWrapper = styled.main`
   display: grid;
   grid-template-rows: 1fr auto;
   padding-top: ${(p) => p.theme.padding.inline};
+`;
+
+const StyledSubheading = styled(Subheading)`
+  margin-bottom: 20px;
 `;
