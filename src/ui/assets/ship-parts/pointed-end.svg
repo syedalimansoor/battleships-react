@@ -1,8 +1,14 @@
-<svg  viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_112_148" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
-<rect x="29.4405" y="29.4609" width="28.7751" height="28.7754" transform="rotate(-180 29.4405 29.4609)" fill="#D9D9D9"/>
-</mask>
-<g mask="url(#mask0_112_148)">
-<path d="M4.51645 14.8692C4.58548 13.3514 5.42418 11.8652 7.03256 11.114L17.5971 6.17947C19.9133 5.09765 22.4385 4.53697 24.9949 4.53697L29.4406 4.53697L29.4406 25.6101L24.9949 25.6101C22.4385 25.6101 19.9133 25.0494 17.5971 23.9676L7.03256 19.0331C5.42418 18.2819 4.58547 16.7956 4.51645 15.2778L4.51645 14.8692Z" fill="#ECDE66"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59.14 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ecde66;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-1" d="M0,24.52c.16-3.6,2.15-7.13,5.97-8.91L31.04,3.9c5.5-2.57,11.49-3.9,17.55-3.9h10.55v50h-10.55c-6.07,0-12.06-1.33-17.55-3.9l-25.07-11.71c-3.82-1.78-5.81-5.31-5.97-8.91v-.97Z"/>
+  </g>
 </svg>
