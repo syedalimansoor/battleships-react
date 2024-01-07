@@ -11,7 +11,13 @@ export default function Grid(props: Props) {
   const [grid] = useGrid(props.idx);
 
   return (
-    <StyledGrid>{grid.map((row) => row.map(() => <Square />))}</StyledGrid>
+    <StyledGrid>
+      {grid.map((squares) =>
+        squares.map((square) => (
+          <Square key={`${square.location.column}-${square.location.row}`} />
+        ))
+      )}
+    </StyledGrid>
   );
 }
 
