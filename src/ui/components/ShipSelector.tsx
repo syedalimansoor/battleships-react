@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   border-radius: 10px 10px 0 0;
 
   display: flex;
-  gap: 10px;
+  gap: 18px;
   flex-wrap: wrap;
 `;
 
@@ -37,6 +37,7 @@ const StyledSubheading = styled(Subheading)`
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 5px;
 `;
 
 const ShipWrapper = styled.div``;
