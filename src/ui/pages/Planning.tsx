@@ -10,9 +10,11 @@ export default function Planning() {
     <ContentWrapper>
       <PageWrapper>
         <Grid idx={0} />
-        <Heading>Place your ships</Heading>
-        <StyledSubheading>Tap on a ship to select it.</StyledSubheading>
-        <ShipSelector idx={0} />
+        <div>
+          <Heading>Place your ships</Heading>
+          <StyledSubheading>Tap on a ship to select it.</StyledSubheading>
+          <ShipSelector idx={0} />
+        </div>
       </PageWrapper>
     </ContentWrapper>
   );
@@ -23,6 +25,7 @@ const PageWrapper = styled.main`
   display: grid;
   grid-template-rows: 1fr auto;
   padding-top: ${(p) => p.theme.padding.inline};
+  gap: 2em;
 `;
 
 const StyledSubheading = styled(Subheading)`
