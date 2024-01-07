@@ -17,11 +17,17 @@ export type Player = {
 };
 
 export type Ship = {
-  isPlaced: boolean;
-  isPositionValid: boolean;
+  positionStatus: ShipPositionStatus;
   orientation: ShipOrientation;
   squares: Square[];
 } & (Carrier | Battleship | Destroyer | Submarine | PatrolBoat);
+
+export enum ShipPositionStatus {
+  Default,
+  Dragging,
+  Placed,
+  Confirmed,
+}
 
 export type Fleet = Ship[];
 
