@@ -5,18 +5,22 @@ import { useFleet } from "../stores/game";
 import Ship from "./common/Ship";
 
 type Props = {
-  idx: PlayerIndex;
+  playerIndex: PlayerIndex;
 };
 
 export default function ShipSelector(props: Props) {
-  const [fleet] = useFleet(props.idx);
+  const [fleet] = useFleet(props.playerIndex);
 
   return (
     <Wrapper>
       {fleet.map((ship, shipIndex) => (
         <ShipWrapper key={ship.name}>
           <StyledSubheading>{ship.name}</StyledSubheading>
-          <Ship ship={ship} playerIndex={props.idx} shipIndex={shipIndex} />
+          <Ship
+            ship={ship}
+            playerIndex={props.playerIndex}
+            shipIndex={shipIndex}
+          />
         </ShipWrapper>
       ))}
     </Wrapper>

@@ -6,26 +6,26 @@ import { Game, PlayerIndex, Ship } from "src/domain/game";
 const $game = deepMap<Game>(initializeGame());
 export default $game;
 
-export function usePlayerName(idx: PlayerIndex) {
-  const game = useStore($game, { keys: [`players[${idx}].name`] });
+export function usePlayerName(playerIndex: PlayerIndex) {
+  const game = useStore($game, { keys: [`players[${playerIndex}].name`] });
 
   const setPlayerName = (newName: string) => {
-    $game.setKey(`players[${idx}].name`, newName);
+    $game.setKey(`players[${playerIndex}].name`, newName);
   };
 
-  return [game.players[idx].name, setPlayerName] as const;
+  return [game.players[playerIndex].name, setPlayerName] as const;
 }
 
-export function useGrid(idx: PlayerIndex) {
-  const game = useStore($game, { keys: [`players[${idx}].grid`] });
+export function useGrid(playerIndex: PlayerIndex) {
+  const game = useStore($game, { keys: [`players[${playerIndex}].grid`] });
 
-  return [game.players[idx].grid] as const;
+  return [game.players[playerIndex].grid] as const;
 }
 
-export function useFleet(idx: PlayerIndex) {
-  const game = useStore($game, { keys: [`players[${idx}].fleet`] });
+export function useFleet(playerIndex: PlayerIndex) {
+  const game = useStore($game, { keys: [`players[${playerIndex}].fleet`] });
 
-  return [game.players[idx].fleet] as const;
+  return [game.players[playerIndex].fleet] as const;
 }
 
 export function useShip(playerIndex: PlayerIndex, shipIndex: number) {

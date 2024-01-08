@@ -9,11 +9,11 @@ export default function Planning() {
   return (
     <ContentWrapper>
       <PageWrapper>
-        <Grid idx={0} />
+        <Grid playerIndex={0} />
         <div>
           <Heading>Place your ships</Heading>
           <StyledSubheading>Tap on a ship to select it.</StyledSubheading>
-          <ShipSelector idx={0} />
+          <ShipSelector playerIndex={0} />
         </div>
       </PageWrapper>
     </ContentWrapper>

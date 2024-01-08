@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { useGrid } from "../stores/game";
 
 type Props = {
-  idx: PlayerIndex;
+  playerIndex: PlayerIndex;
 };
 
 export default function Grid(props: Props) {
-  const [grid] = useGrid(props.idx);
+  const [grid] = useGrid(props.playerIndex);
 
   return (
     <StyledGrid>
