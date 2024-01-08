@@ -1,13 +1,18 @@
-import { type Ship, ShipCategories } from "src/domain/game";
+import { type Ship, ShipCategories, PlayerIndex } from "src/domain/game";
+import { useShip } from "src/ui/stores/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
 import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
 import RoundEnd from "ui/assets/ship-parts/round-end.svg?react";
 
-type Props = { ship: Ship };
+type Props = {
+  ship: Ship;
+  playerIndex: PlayerIndex;
+  shipIndex: number;
+};
 
 export default function Ship(props: Props) {
-  const { ship } = props;
+  const [ship, setShip] = useShip(props.playerIndex, props.shipIndex);
 
   let Rear: typeof FlatEnd;
   let Front: typeof FlatEnd;
