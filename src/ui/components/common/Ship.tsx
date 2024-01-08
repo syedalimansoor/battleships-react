@@ -37,7 +37,9 @@ export default function Ship(props: Props) {
   return (
     <PartsWrapper>
       <Rear />
-      <ShipBody $length={ship.length} />
+      {Array.from({ length: ship.length - 2 }, (_, index) => (
+        <ShipBody key={index} />
+      ))}
       <Front />
     </PartsWrapper>
   );
@@ -53,9 +55,7 @@ const PartsWrapper = styled.div`
   }
 `;
 
-const ShipBody = styled.div.attrs<{ $length: number }>((p) => ({
-  $length: p.$length,
-}))`
+const ShipBody = styled.div`
   background-color: ${(p) => p.theme.color.yellow5};
-  aspect-ratio: ${(p) => p.$length - 2};
+  aspect-ratio: 1;
 `;
