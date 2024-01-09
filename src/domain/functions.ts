@@ -95,6 +95,9 @@ function initializeFleet(): Fleet {
   };
 }
 
+/**
+ * Selects a ship from the fleet to be ready for placement on the grid. If the ship is already selected, then it will deselect the ship.
+ */
 export function selectShip(fleet: Fleet, ship: Ship): Fleet {
   let newFleet: Fleet;
   if (fleet.selected === ship) {
