@@ -4,6 +4,7 @@ import {
   Game,
   GamePhase,
   Grid,
+  Ship,
   ShipCategories,
   ShipOrientation,
   ShipPositionStatus,
@@ -92,4 +93,14 @@ function initializeFleet(): Fleet {
       },
     ],
   };
+}
+
+export function selectShip(fleet: Fleet, ship: Ship): Fleet {
+  let newFleet: Fleet;
+  if (fleet.selected === ship) {
+    newFleet = { ...fleet, selected: null };
+  } else {
+    newFleet = { ...fleet, selected: ship };
+  }
+  return newFleet;
 }

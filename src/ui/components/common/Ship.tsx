@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import { selectShip } from "src/domain/functions";
 import { type Ship, ShipCategories, PlayerIndex, Fleet } from "src/domain/game";
 import { useFleet, useShip } from "src/ui/stores/game";
 import styled from "styled-components";
@@ -36,12 +37,7 @@ export default function Ship(props: Props) {
   }
 
   const handleClick: MouseEventHandler<HTMLDivElement> = () => {
-    let newFleet: Fleet;
-    if (fleet.selected === ship) {
-      newFleet = { ...fleet, selected: null };
-    } else {
-      newFleet = { ...fleet, selected: ship };
-    }
+    const newFleet = selectShip(fleet, ship);
     setFleet(newFleet);
   };
 
