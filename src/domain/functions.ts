@@ -50,55 +50,59 @@ function initializeGrid(): Grid {
 }
 
 function initializeFleet(): Fleet {
+  const ships: Ship[] = [
+    {
+      id: uuid(),
+      category: ShipCategories.Carrier,
+      name: "carrier",
+      length: 5,
+      positionStatus: ShipPositionStatus.Default,
+      orientation: ShipOrientation.Horizontal,
+      squares: [],
+    },
+    {
+      id: uuid(),
+      category: ShipCategories.Battleship,
+      name: "battleship",
+      length: 4,
+      positionStatus: ShipPositionStatus.Default,
+      orientation: ShipOrientation.Horizontal,
+      squares: [],
+    },
+    {
+      id: uuid(),
+      category: ShipCategories.Destroyer,
+      name: "destroyer",
+      length: 3,
+      positionStatus: ShipPositionStatus.Default,
+      orientation: ShipOrientation.Horizontal,
+      squares: [],
+    },
+    {
+      id: uuid(),
+      category: ShipCategories.Submarine,
+      name: "submarine",
+      length: 3,
+      positionStatus: ShipPositionStatus.Default,
+      orientation: ShipOrientation.Horizontal,
+      squares: [],
+    },
+    {
+      id: uuid(),
+      category: ShipCategories.PatrolBoat,
+      name: "patrol boat",
+      length: 2,
+      positionStatus: ShipPositionStatus.Default,
+      orientation: ShipOrientation.Horizontal,
+      squares: [],
+    },
+  ];
+
   return {
     selected: null,
-    ships: [
-      {
-        id: uuid(),
-        category: ShipCategories.Carrier,
-        name: "carrier",
-        length: 5,
-        positionStatus: ShipPositionStatus.Default,
-        orientation: ShipOrientation.Horizontal,
-        squares: [],
-      },
-      {
-        id: uuid(),
-        category: ShipCategories.Battleship,
-        name: "battleship",
-        length: 4,
-        positionStatus: ShipPositionStatus.Default,
-        orientation: ShipOrientation.Horizontal,
-        squares: [],
-      },
-      {
-        id: uuid(),
-        category: ShipCategories.Destroyer,
-        name: "destroyer",
-        length: 3,
-        positionStatus: ShipPositionStatus.Default,
-        orientation: ShipOrientation.Horizontal,
-        squares: [],
-      },
-      {
-        id: uuid(),
-        category: ShipCategories.Submarine,
-        name: "submarine",
-        length: 3,
-        positionStatus: ShipPositionStatus.Default,
-        orientation: ShipOrientation.Horizontal,
-        squares: [],
-      },
-      {
-        id: uuid(),
-        category: ShipCategories.PatrolBoat,
-        name: "patrol boat",
-        length: 2,
-        positionStatus: ShipPositionStatus.Default,
-        orientation: ShipOrientation.Horizontal,
-        squares: [],
-      },
-    ],
+    ships,
+    unplacedShips: ships.map((ship) => ship.id),
+    placedShips: [],
   };
 }
 

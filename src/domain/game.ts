@@ -31,6 +31,8 @@ export enum ShipPositionStatus {
 
 export type Fleet = {
   ships: Ship[];
+  unplacedShips: string[];
+  placedShips: string[];
   selected: string | null;
 };
 

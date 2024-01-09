@@ -1,7 +1,7 @@
 import { PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
 import Subheading from "./common/Subheading";
-import { useFleet } from "../stores/game";
+import { getShip, useFleet } from "../stores/game";
 import Ship from "./common/Ship";
 
 type Props = {
@@ -13,12 +13,15 @@ export default function ShipSelector(props: Props) {
 
   return (
     <Wrapper>
-      {fleet.ships.map((ship) => (
-        <ShipWrapper key={ship.name}>
-          <StyledSubheading>{ship.name}</StyledSubheading>
-          <Ship playerIndex={props.playerIndex} shipId={ship.id} />
-        </ShipWrapper>
-      ))}
+      {fleet.unplacedShips.map((shipId) => {
+        const ship = getShip(props.playerIndex, shipId);
+        return (
+          <ShipWrapper key={ship.name}>
+            <StyledSubheading>{ship.name}</StyledSubheading>
+            <Ship playerIndex={props.playerIndex} shipId={shipId} />
+          </ShipWrapper>
+        );
+      })}
     </Wrapper>
   );
 }
