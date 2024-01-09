@@ -16,11 +16,7 @@ export default function ShipSelector(props: Props) {
       {fleet.ships.map((ship, shipIndex) => (
         <ShipWrapper key={ship.name}>
           <StyledSubheading>{ship.name}</StyledSubheading>
-          <Ship
-            ship={ship}
-            playerIndex={props.playerIndex}
-            shipIndex={shipIndex}
-          />
+          <Ship playerIndex={props.playerIndex} shipIndex={shipIndex} />
         </ShipWrapper>
       ))}
     </Wrapper>

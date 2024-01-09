@@ -7,7 +7,6 @@ import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
 import RoundEnd from "ui/assets/ship-parts/round-end.svg?react";
 
 type Props = {
-  ship: Ship;
   playerIndex: PlayerIndex;
   shipIndex: number;
 };
