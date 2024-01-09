@@ -17,6 +17,7 @@ export type Player = {
 };
 
 export type Ship = {
+  id: string;
   positionStatus: ShipPositionStatus;
   orientation: ShipOrientation;
   squares: Square[];

@@ -100,7 +100,7 @@ function initializeFleet(): Fleet {
  */
 export function selectShip(fleet: Fleet, ship: Ship): Fleet {
   let newFleet: Fleet;
-  if (fleet.selected === ship) {
+  if (fleet.selected && fleet.selected.id === ship.id) {
     newFleet = { ...fleet, selected: null };
   } else {
     newFleet = { ...fleet, selected: ship };
