@@ -1,7 +1,10 @@
 import { GRID_SIZE } from "src/domain/constants";
-import { PlayerIndex } from "src/domain/game";
+import { PlayerIndex, Square as SquareType } from "src/domain/game";
 import styled from "styled-components";
-import { useGrid } from "../stores/game";
+import { getShip, setShip, useFleet, useGrid } from "../stores/game";
+import Ship from "./common/Ship";
+import Square from "./common/Square";
+import { placeShip } from "src/domain/functions";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -9,14 +12,40 @@ type Props = {
 
 export default function Grid(props: Props) {
   const [grid] = useGrid(props.playerIndex);
+  const [fleet] = useFleet(props.playerIndex);
+
+  const createHandleSquareClick = (square: SquareType) => {
+    const handleSquareClick = (): void => {
+      if (fleet.selected) {
+        const ship = getShip(props.playerIndex, fleet.selected);
+        const newShip = placeShip(grid, square, ship);
+        setShip(props.playerIndex, newShip);
+      }
+    };
+    return handleSquareClick;
+  };
 
   return (
     <StyledGrid>
-      {grid.map((squares) =>
-        squares.map((square) => (
-          <Square key={`${square.location.column}-${square.location.row}`} />
-        ))
-      )}
+      <SquareLayer>
+        {grid.map((squares) =>
+          squares.map((square) => (
+            <Square
+              key={`${square.location.column}-${square.location.row}`}
+              handleClick={createHandleSquareClick(square)}
+            />
+          ))
+        )}
+      </SquareLayer>
+      <ShipLayer>
+        {/* {fleet.ships.map((ship, shipIndex) => (
+          <Ship
+            key={shipIndex}
+            playerIndex={props.playerIndex}
+            shipIndex={shipIndex}
+          />
+        ))} */}
+      </ShipLayer>
     </StyledGrid>
   );
 }
@@ -32,11 +61,10 @@ const StyledGrid = styled.div`
   grid-template: repeat(${GRID_SIZE}, 1fr) / repeat(${GRID_SIZE}, 1fr);
 `;
 
-const Square = styled.div`
-  &:not(:nth-of-type(${GRID_SIZE}n + 1)) {
-    border-left: 3px solid ${(p) => p.theme.color.blue5};
-  }
-  &:nth-of-type(n + ${GRID_SIZE + 1}) {
-    border-top: 3px solid ${(p) => p.theme.color.blue5};
-  }
+const SquareLayer = styled.div`
+  display: contents;
+`;
+
+const ShipLayer = styled.div`
+  display: contents;
 `;

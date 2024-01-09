@@ -44,7 +44,7 @@ export default function Ship(props: Props) {
   return (
     <PartsWrapper
       onClick={handleClick}
-      $selected={fleet.selected ? fleet.selected.id === ship.id : false}
+      $selected={fleet.selected ? fleet.selected === ship.id : false}
     >
       <Rear />
       {Array.from({ length: ship.length - 2 }, (_, index) => (

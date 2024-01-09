@@ -31,7 +31,7 @@ export enum ShipPositionStatus {
 
 export type Fleet = {
   ships: Ship[];
-  selected: Ship | null;
+  selected: string | null;
 };
 
 export type Square = {

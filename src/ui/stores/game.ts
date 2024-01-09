@@ -33,10 +33,14 @@ export function useFleet(playerIndex: PlayerIndex) {
   return [game.players[playerIndex].fleet, setFleet] as const;
 }
 
-export function useShip(playerIndex: PlayerIndex, shipId: string) {
-  const shipIndex = $game
+function findShipIndex(playerIndex: PlayerIndex, shipId: string) {
+  return $game
     .get()
     .players[playerIndex].fleet.ships.findIndex((ship) => ship.id === shipId);
+}
+
+export function useShip(playerIndex: PlayerIndex, shipId: string) {
+  const shipIndex = findShipIndex(playerIndex, shipId);
 
   const KEY = `players[${playerIndex}].fleet.ships[${shipIndex}]` as const;
   const game = useStore($game, { keys: [KEY] });
@@ -46,4 +50,17 @@ export function useShip(playerIndex: PlayerIndex, shipId: string) {
   };
 
   return [game.players[playerIndex].fleet.ships[shipIndex], setShip] as const;
+}
+
+export function getShip(playerIndex: PlayerIndex, shipId: string): Ship {
+  return $game
+    .get()
+    .players[playerIndex].fleet.ships.find(
+      (ship) => ship.id === shipId
+    ) as Ship;
+}
+
+export function setShip(playerIndex: PlayerIndex, ship: Ship) {
+  const shipIndex = findShipIndex(playerIndex, ship.id);
+  $game.setKey(`players[${playerIndex}].fleet.ships[${shipIndex}]`, ship);
 }
