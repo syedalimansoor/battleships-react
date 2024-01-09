@@ -9,25 +9,31 @@ import { useFleet } from "../stores/game";
 const PLAYER_INDEX = 0;
 
 export default function Planning() {
-  const [fleet] = useFleet(PLAYER_INDEX);
-
   return (
     <ContentWrapper>
       <PageWrapper>
         <Grid playerIndex={PLAYER_INDEX} />
         <div>
           <Heading>Place your ships</Heading>
-          <StyledSubheading>
-            {fleet.selected
-              ? "Tap on a square to place the ship."
-              : "Tap on a ship to select it."}
-          </StyledSubheading>
+          <ActionIndicator />
           <ShipSelector playerIndex={PLAYER_INDEX} />
         </div>
       </PageWrapper>
     </ContentWrapper>
   );
 }
+
+const ActionIndicator = () => {
+  const [fleet] = useFleet(PLAYER_INDEX);
+
+  return (
+    <StyledSubheading>
+      {fleet.selected
+        ? "Tap on a square to place the ship."
+        : "Tap on a ship to select it."}
+    </StyledSubheading>
+  );
+};
 
 const PageWrapper = styled.main`
   height: 100%;
