@@ -16,7 +16,8 @@
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
     "react-router-dom": "^6.21.1",
-    "styled-components": "^6.1.6"
+    "styled-components": "^6.1.6",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
