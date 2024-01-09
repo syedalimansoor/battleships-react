@@ -9,11 +9,11 @@ import RoundEnd from "ui/assets/ship-parts/round-end.svg?react";
 
 type Props = {
   playerIndex: PlayerIndex;
-  shipIndex: number;
+  shipId: string;
 };
 
 export default function Ship(props: Props) {
-  const [ship] = useShip(props.playerIndex, props.shipIndex);
+  const [ship] = useShip(props.playerIndex, props.shipId);
   const [fleet, setFleet] = useFleet(props.playerIndex);
 
   let Rear: typeof FlatEnd;

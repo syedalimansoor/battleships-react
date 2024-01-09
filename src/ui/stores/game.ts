@@ -33,7 +33,11 @@ export function useFleet(playerIndex: PlayerIndex) {
   return [game.players[playerIndex].fleet, setFleet] as const;
 }
 
-export function useShip(playerIndex: PlayerIndex, shipIndex: number) {
+export function useShip(playerIndex: PlayerIndex, shipId: string) {
+  const shipIndex = $game
+    .get()
+    .players[playerIndex].fleet.ships.findIndex((ship) => ship.id === shipId);
+
   const KEY = `players[${playerIndex}].fleet.ships[${shipIndex}]` as const;
   const game = useStore($game, { keys: [KEY] });
 
