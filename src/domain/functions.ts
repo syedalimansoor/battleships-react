@@ -8,7 +8,9 @@ import {
   ShipCategories,
   ShipOrientation,
   ShipPositionStatus,
+  Square,
 } from "./game";
+import { v4 as uuid } from "uuid";
 
 export function initializeGame(): Game {
   return {
@@ -52,6 +54,7 @@ function initializeFleet(): Fleet {
     selected: null,
     ships: [
       {
+        id: uuid(),
         category: ShipCategories.Carrier,
         name: "carrier",
         length: 5,
@@ -60,6 +63,7 @@ function initializeFleet(): Fleet {
         squares: [],
       },
       {
+        id: uuid(),
         category: ShipCategories.Battleship,
         name: "battleship",
         length: 4,
@@ -68,6 +72,7 @@ function initializeFleet(): Fleet {
         squares: [],
       },
       {
+        id: uuid(),
         category: ShipCategories.Destroyer,
         name: "destroyer",
         length: 3,
@@ -76,6 +81,7 @@ function initializeFleet(): Fleet {
         squares: [],
       },
       {
+        id: uuid(),
         category: ShipCategories.Submarine,
         name: "submarine",
         length: 3,
@@ -84,6 +90,7 @@ function initializeFleet(): Fleet {
         squares: [],
       },
       {
+        id: uuid(),
         category: ShipCategories.PatrolBoat,
         name: "patrol boat",
         length: 2,
@@ -106,4 +113,32 @@ export function selectShip(fleet: Fleet, ship: Ship): Fleet {
     newFleet = { ...fleet, selected: ship };
   }
   return newFleet;
+}
+
+export function placeShip(grid: Grid, square: Square, ship: Ship) {
+  const squareList: Square[] = [];
+  const { row, column } = square.location;
+
+  switch (ship.orientation) {
+    case ShipOrientation.Horizontal:
+      for (let squareIndex = 0; squareIndex < ship.length; squareIndex++) {
+        try {
+          squareList.push(grid[row][column + squareIndex]);
+        } catch (error) {
+          console.log("Invalid position!");
+        }
+      }
+      break;
+    case ShipOrientation.Vertical:
+      for (let squareIndex = 0; squareIndex < ship.length; squareIndex++) {
+        try {
+          squareList.push(grid[row + GRID_SIZE * squareIndex][column]);
+        } catch (error) {
+          console.log("Invalid position!");
+        }
+      }
+  }
+
+  const newShip: Ship = { ...ship, squares: squareList };
+  return newShip;
 }
