@@ -24,12 +24,14 @@ export type Ship = {
 
 export enum ShipPositionStatus {
   Default,
-  Dragging,
+  Placing,
   Placed,
-  Confirmed,
 }
 
-export type Fleet = Ship[];
+export type Fleet = {
+  ships: Ship[];
+  selected: Ship | null;
+};
 
 export type Square = {
   location: SquareLocation;

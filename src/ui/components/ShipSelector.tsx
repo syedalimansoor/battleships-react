@@ -13,7 +13,7 @@ export default function ShipSelector(props: Props) {
 
   return (
     <Wrapper>
-      {fleet.map((ship, shipIndex) => (
+      {fleet.ships.map((ship, shipIndex) => (
         <ShipWrapper key={ship.name}>
           <StyledSubheading>{ship.name}</StyledSubheading>
           <Ship

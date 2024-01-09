@@ -47,46 +47,49 @@ function initializeGrid(): Grid {
 }
 
 function initializeFleet(): Fleet {
-  return [
-    {
-      category: ShipCategories.Carrier,
-      name: "carrier",
-      length: 5,
-      positionStatus: ShipPositionStatus.Default,
-      orientation: ShipOrientation.Horizontal,
-      squares: [],
-    },
-    {
-      category: ShipCategories.Battleship,
-      name: "battleship",
-      length: 4,
-      positionStatus: ShipPositionStatus.Default,
-      orientation: ShipOrientation.Horizontal,
-      squares: [],
-    },
-    {
-      category: ShipCategories.Destroyer,
-      name: "destroyer",
-      length: 3,
-      positionStatus: ShipPositionStatus.Default,
-      orientation: ShipOrientation.Horizontal,
-      squares: [],
-    },
-    {
-      category: ShipCategories.Submarine,
-      name: "submarine",
-      length: 3,
-      positionStatus: ShipPositionStatus.Default,
-      orientation: ShipOrientation.Horizontal,
-      squares: [],
-    },
-    {
-      category: ShipCategories.PatrolBoat,
-      name: "patrol boat",
-      length: 2,
-      positionStatus: ShipPositionStatus.Default,
-      orientation: ShipOrientation.Horizontal,
-      squares: [],
-    },
-  ];
+  return {
+    selected: null,
+    ships: [
+      {
+        category: ShipCategories.Carrier,
+        name: "carrier",
+        length: 5,
+        positionStatus: ShipPositionStatus.Default,
+        orientation: ShipOrientation.Horizontal,
+        squares: [],
+      },
+      {
+        category: ShipCategories.Battleship,
+        name: "battleship",
+        length: 4,
+        positionStatus: ShipPositionStatus.Default,
+        orientation: ShipOrientation.Horizontal,
+        squares: [],
+      },
+      {
+        category: ShipCategories.Destroyer,
+        name: "destroyer",
+        length: 3,
+        positionStatus: ShipPositionStatus.Default,
+        orientation: ShipOrientation.Horizontal,
+        squares: [],
+      },
+      {
+        category: ShipCategories.Submarine,
+        name: "submarine",
+        length: 3,
+        positionStatus: ShipPositionStatus.Default,
+        orientation: ShipOrientation.Horizontal,
+        squares: [],
+      },
+      {
+        category: ShipCategories.PatrolBoat,
+        name: "patrol boat",
+        length: 2,
+        positionStatus: ShipPositionStatus.Default,
+        orientation: ShipOrientation.Horizontal,
+        squares: [],
+      },
+    ],
+  };
 }

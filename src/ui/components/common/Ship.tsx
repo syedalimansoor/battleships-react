@@ -1,5 +1,12 @@
-import { type Ship, ShipCategories, PlayerIndex } from "src/domain/game";
-import { useShip } from "src/ui/stores/game";
+import { MouseEventHandler } from "react";
+import {
+  type Ship,
+  ShipCategories,
+  PlayerIndex,
+  ShipPositionStatus,
+  Fleet,
+} from "src/domain/game";
+import { useFleet, useShip } from "src/ui/stores/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
 import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
@@ -12,7 +19,8 @@ type Props = {
 };
 
 export default function Ship(props: Props) {
-  const [ship, setShip] = useShip(props.playerIndex, props.shipIndex);
+  const [ship] = useShip(props.playerIndex, props.shipIndex);
+  const [fleet, setFleet] = useFleet(props.playerIndex);
 
   let Rear: typeof FlatEnd;
   let Front: typeof FlatEnd;
@@ -34,8 +42,18 @@ export default function Ship(props: Props) {
       break;
   }
 
+  const handleClick: MouseEventHandler<HTMLDivElement> = () => {
+    let newFleet: Fleet;
+    if (fleet.selected === ship) {
+      newFleet = { ...fleet, selected: null };
+    } else {
+      newFleet = { ...fleet, selected: ship };
+    }
+    setFleet(newFleet);
+  };
+
   return (
-    <PartsWrapper>
+    <PartsWrapper onClick={handleClick} $selected={fleet.selected === ship}>
       <Rear />
       {Array.from({ length: ship.length - 2 }, (_, index) => (
         <ShipBody key={index} />
@@ -45,14 +63,19 @@ export default function Ship(props: Props) {
   );
 }
 
-const PartsWrapper = styled.div`
+const PartsWrapper = styled.div<{ $selected?: boolean }>`
   display: flex;
   align-items: stretch;
   height: 30px;
+  width: fit-content;
 
   & > :last-child {
     transform: scaleX(-1) translateX(1px);
   }
+
+  transition: filter 200ms ease;
+  filter: ${(p) =>
+    p.$selected ? `drop-shadow(0 0 5px ${p.theme.color.yellow5})` : `none`};
 `;
 
 const ShipBody = styled.div`
