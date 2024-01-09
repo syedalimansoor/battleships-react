@@ -1,11 +1,5 @@
 import { MouseEventHandler } from "react";
-import {
-  type Ship,
-  ShipCategories,
-  PlayerIndex,
-  ShipPositionStatus,
-  Fleet,
-} from "src/domain/game";
+import { type Ship, ShipCategories, PlayerIndex, Fleet } from "src/domain/game";
 import { useFleet, useShip } from "src/ui/stores/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
