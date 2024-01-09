@@ -4,16 +4,25 @@ import Grid from "../components/Grid";
 import Heading from "../components/common/Heading";
 import Subheading from "../components/common/Subheading";
 import ShipSelector from "../components/ShipSelector";
+import { useFleet } from "../stores/game";
+
+const PLAYER_INDEX = 0;
 
 export default function Planning() {
+  const [fleet] = useFleet(PLAYER_INDEX);
+
   return (
     <ContentWrapper>
       <PageWrapper>
-        <Grid playerIndex={0} />
+        <Grid playerIndex={PLAYER_INDEX} />
         <div>
           <Heading>Place your ships</Heading>
-          <StyledSubheading>Tap on a ship to select it.</StyledSubheading>
-          <ShipSelector playerIndex={0} />
+          <StyledSubheading>
+            {fleet.selected
+              ? "Tap on a square to place the ship."
+              : "Tap on a ship to select it."}
+          </StyledSubheading>
+          <ShipSelector playerIndex={PLAYER_INDEX} />
         </div>
       </PageWrapper>
     </ContentWrapper>
