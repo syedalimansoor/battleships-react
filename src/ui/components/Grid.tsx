@@ -2,7 +2,6 @@ import { GRID_SIZE } from "src/domain/constants";
 import { PlayerIndex, Square as SquareType } from "src/domain/game";
 import styled from "styled-components";
 import { getShip, setShip, useFleet, useGrid } from "../stores/game";
-import Ship from "./common/Ship";
 import Square from "./common/Square";
 import { placeShip } from "src/domain/functions";
 
