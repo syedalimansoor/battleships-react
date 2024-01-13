@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { getShip, setShip, useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
 import { placeShip } from "src/domain/functions";
-import AvailableShip from "./common/AvailableShip";
 
 type Props = {
   playerIndex: PlayerIndex;

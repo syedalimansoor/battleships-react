@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import { type Ship, ShipCategories } from "src/domain/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
