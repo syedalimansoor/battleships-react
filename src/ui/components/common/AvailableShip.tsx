@@ -1,20 +1,18 @@
 import { MouseEventHandler } from "react";
-import { selectShip } from "src/domain/functions";
-import { type Ship, ShipCategories, PlayerIndex } from "src/domain/game";
-import { useFleet, useShip } from "src/ui/stores/game";
+import { type Ship, ShipCategories } from "src/domain/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
 import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
 import RoundEnd from "ui/assets/ship-parts/round-end.svg?react";
 
 type Props = {
-  playerIndex: PlayerIndex;
-  shipId: string;
+  ship: Ship;
+  onClick: (shipId: string) => void;
+  selected: boolean;
 };
 
-export default function Ship(props: Props) {
-  const [ship] = useShip(props.playerIndex, props.shipId);
-  const [fleet, setFleet] = useFleet(props.playerIndex);
+export default function AvailableShip(props: Props) {
+  const { ship, selected } = props;
 
   let Rear: typeof FlatEnd;
   let Front: typeof FlatEnd;
@@ -36,16 +34,12 @@ export default function Ship(props: Props) {
       break;
   }
 
-  const handleClick: MouseEventHandler<HTMLDivElement> = () => {
-    const newFleet = selectShip(fleet, ship);
-    setFleet(newFleet);
+  const handleClick = () => {
+    props.onClick(ship.id);
   };
 
   return (
-    <PartsWrapper
-      onClick={handleClick}
-      $selected={fleet.selected ? fleet.selected === ship.id : false}
-    >
+    <PartsWrapper onClick={handleClick} $selected={selected}>
       <Rear />
       {Array.from({ length: ship.length - 2 }, (_, index) => (
         <ShipBody key={index} />

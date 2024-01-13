@@ -1,15 +1,20 @@
-import { PlayerIndex } from "src/domain/game";
+import { Fleet, PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
 import Subheading from "./common/Subheading";
 import { getShip, useFleet } from "../stores/game";
-import Ship from "./common/Ship";
+import AvailableShip from "./common/AvailableShip";
 
 type Props = {
   playerIndex: PlayerIndex;
 };
 
 export default function ShipSelector(props: Props) {
-  const [fleet] = useFleet(props.playerIndex);
+  const [fleet, setFleet] = useFleet(props.playerIndex);
+
+  const handleShipClick = (shipId: string) => {
+    const newFleet: Fleet = { ...fleet, selected: shipId };
+    setFleet(newFleet);
+  };
 
   return (
     <Wrapper>
@@ -18,7 +23,11 @@ export default function ShipSelector(props: Props) {
         return (
           <ShipWrapper key={ship.name}>
             <StyledSubheading>{ship.name}</StyledSubheading>
-            <Ship playerIndex={props.playerIndex} shipId={shipId} />
+            <AvailableShip
+              ship={ship}
+              onClick={handleShipClick}
+              selected={fleet.selected === ship.id}
+            />
           </ShipWrapper>
         );
       })}

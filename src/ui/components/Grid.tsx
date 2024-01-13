@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { getShip, setShip, useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
 import { placeShip } from "src/domain/functions";
-import Ship from "./common/Ship";
+import AvailableShip from "./common/AvailableShip";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -37,15 +37,7 @@ export default function Grid(props: Props) {
           ))
         )}
       </SquareLayer>
-      <ShipLayer>
-        {fleet.placedShips.map((shipId, shipIndex) => (
-          <Ship
-            key={shipIndex}
-            playerIndex={props.playerIndex}
-            shipId={shipId}
-          />
-        ))}
-      </ShipLayer>
+      <ShipLayer></ShipLayer>
     </StyledGrid>
   );
 }
