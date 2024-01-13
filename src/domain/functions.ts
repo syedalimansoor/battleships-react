@@ -119,7 +119,36 @@ export function selectShip(fleet: Fleet, ship: Ship): Fleet {
   return newFleet;
 }
 
-export function placeShip(grid: Grid, square: Square, ship: Ship) {
+/**
+ * This places the ship on the Grid, but does not confirm its position.
+ * It will:
+ * - move the ship from unplacedShips to placedShips
+ * - add all covered squares to the ship's squareList
+ * - check for invalid positions
+ * @returns the updated fleet
+ */
+export function placeShip(
+  grid: Grid,
+  square: Square,
+  fleet: Fleet,
+  ship: Ship
+) {
+  let newFleet: Fleet = { ...fleet };
+
+  // move ship from unplacedShips to placedShips
+  if (fleet.unplacedShips.includes(ship.id)) {
+    const newUnplacedShips = fleet.unplacedShips.filter(
+      (shipId) => shipId !== ship.id
+    );
+    const newPlacedShips = [...fleet.placedShips, ship.id];
+    newFleet = {
+      ...newFleet,
+      placedShips: newPlacedShips,
+      unplacedShips: newUnplacedShips,
+    };
+  }
+
+  // add all covered squares to the ship's squareList
   const squareList: Square[] = [];
   const { row, column } = square.location;
 
@@ -144,5 +173,8 @@ export function placeShip(grid: Grid, square: Square, ship: Ship) {
   }
 
   const newShip: Ship = { ...ship, squares: squareList };
-  return newShip;
+  const shipIndex = fleet.ships.findIndex((ship) => ship.id === newShip.id);
+  newFleet.ships.splice(shipIndex, 1, newShip);
+
+  return newFleet;
 }

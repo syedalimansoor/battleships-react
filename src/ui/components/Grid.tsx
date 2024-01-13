@@ -1,9 +1,10 @@
 import { GRID_SIZE } from "src/domain/constants";
-import { PlayerIndex, Square as SquareType } from "src/domain/game";
+import { PlayerIndex, Ship, Square as SquareType } from "src/domain/game";
 import styled from "styled-components";
 import { getShip, setShip, useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
 import { placeShip } from "src/domain/functions";
+import GridShip from "./common/GridShip";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -11,17 +12,16 @@ type Props = {
 
 export default function Grid(props: Props) {
   const [grid] = useGrid(props.playerIndex);
-  const [fleet] = useFleet(props.playerIndex);
+  const [fleet, setFleet] = useFleet(props.playerIndex);
 
-  const createHandleSquareClick = (square: SquareType) => {
-    const handleSquareClick = (): void => {
-      if (fleet.selected) {
-        const ship = getShip(props.playerIndex, fleet.selected);
-        const newShip = placeShip(grid, square, ship);
-        setShip(props.playerIndex, newShip);
-      }
-    };
-    return handleSquareClick;
+  const handleSquareClick = (square: SquareType) => {
+    if (fleet.selected) {
+      const selectedShip = fleet.ships.find(
+        (ship) => ship.id === fleet.selected
+      ) as Ship;
+      const newFleet = placeShip(grid, square, fleet, selectedShip);
+      setFleet(newFleet);
+    }
   };
 
   return (
@@ -30,13 +30,20 @@ export default function Grid(props: Props) {
         {grid.map((squares) =>
           squares.map((square) => (
             <Square
+              square={square}
               key={`${square.location.column}-${square.location.row}`}
-              handleClick={createHandleSquareClick(square)}
+              onClick={handleSquareClick}
             />
           ))
         )}
       </SquareLayer>
-      <ShipLayer></ShipLayer>
+      <ShipLayer>
+        {fleet.ships
+          .filter((ship) => fleet.placedShips.includes(ship.id))
+          .map((ship) => (
+            <GridShip key={ship.id} ship={ship} />
+          ))}
+      </ShipLayer>
     </StyledGrid>
   );
 }
