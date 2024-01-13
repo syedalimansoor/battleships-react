@@ -1,6 +1,5 @@
 import { Fleet, PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
-import Subheading from "./common/Subheading";
 import { getShip, useFleet } from "../stores/game";
 import AvailableShip from "./common/AvailableShip";
 
