@@ -1,4 +1,4 @@
-import { Ship, ShipCategories } from "src/domain/game";
+import { Ship, ShipCategories, ShipOrientation } from "src/domain/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
 import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
@@ -31,8 +31,21 @@ export default function GridShip(props: Props) {
       break;
   }
 
+  const column = ship.squares[0].location.column + 1;
+  const row = ship.squares[0].location.row + 1;
+  let width, height: number;
+  switch (ship.orientation) {
+    case ShipOrientation.Horizontal:
+      width = ship.length;
+      height = 1;
+      break;
+    default:
+      width = 1;
+      height = ship.length;
+  }
+
   return (
-    <PartsWrapper>
+    <PartsWrapper $column={column} $row={row} $width={width} $height={height}>
       <Rear />
       {Array.from({ length: ship.length - 2 }, (_, index) => (
         <ShipBody key={index} />
@@ -42,14 +55,22 @@ export default function GridShip(props: Props) {
   );
 }
 
-const PartsWrapper = styled.div`
-  display: flex;
-  align-items: stretch;
-  width: fit-content;
+const PartsWrapper = styled.div<{
+  $column: number;
+  $row: number;
+  $width: number;
+  $height: number;
+}>`
+  display: grid;
+  grid-template-rows: repeat(${(p) => p.$height}, 1fr);
+  grid-template-columns: repeat(${(p) => p.$width}, 1fr);
 
   & > :last-child {
     transform: scaleX(-1) translateX(1px);
   }
+
+  grid-row: ${(p) => p.$row} / span ${(p) => p.$height};
+  grid-column: ${(p) => p.$column} / span ${(p) => p.$width};
 `;
 
 const ShipBody = styled.div`
