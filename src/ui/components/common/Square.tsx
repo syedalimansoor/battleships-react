@@ -1,13 +1,18 @@
-import { MouseEventHandler } from "react";
 import { GRID_SIZE } from "src/domain/constants";
+import { type Square } from "src/domain/game";
 import styled from "styled-components";
 
 type Props = {
-  handleClick: MouseEventHandler<HTMLDivElement>;
+  square: Square;
+  onClick: (square: Square) => void;
 };
 
 const Square = (props: Props) => {
-  return <StyledSquare onClick={props.handleClick} />;
+  const { square } = props;
+  const handleClick = () => {
+    props.onClick(square);
+  };
+  return <StyledSquare onClick={handleClick} />;
 };
 
 const StyledSquare = styled.div`
