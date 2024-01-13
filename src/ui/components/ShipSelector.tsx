@@ -12,7 +12,12 @@ export default function ShipSelector(props: Props) {
   const [fleet, setFleet] = useFleet(props.playerIndex);
 
   const handleShipClick = (shipId: string) => {
-    const newFleet: Fleet = { ...fleet, selected: shipId };
+    let newFleet: Fleet;
+    if (fleet.selected === shipId) {
+      newFleet = { ...fleet, selected: null };
+    } else {
+      newFleet = { ...fleet, selected: shipId };
+    }
     setFleet(newFleet);
   };
 
