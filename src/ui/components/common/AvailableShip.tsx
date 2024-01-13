@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
 import PointedEnd from "ui/assets/ship-parts/pointed-end.svg?react";
 import RoundEnd from "ui/assets/ship-parts/round-end.svg?react";
+import Subheading from "./Subheading";
 
 type Props = {
   ship: Ship;
@@ -38,13 +39,16 @@ export default function AvailableShip(props: Props) {
   };
 
   return (
-    <PartsWrapper onClick={handleClick} $selected={selected}>
-      <Rear />
-      {Array.from({ length: ship.length - 2 }, (_, index) => (
-        <ShipBody key={index} />
-      ))}
-      <Front />
-    </PartsWrapper>
+    <ShipWrapper onClick={handleClick}>
+      <StyledSubheading>{ship.name}</StyledSubheading>
+      <PartsWrapper $selected={selected}>
+        <Rear />
+        {Array.from({ length: ship.length - 2 }, (_, index) => (
+          <ShipBody key={index} />
+        ))}
+        <Front />
+      </PartsWrapper>
+    </ShipWrapper>
   );
 }
 
@@ -67,3 +71,12 @@ const ShipBody = styled.div`
   background-color: ${(p) => p.theme.color.yellow5};
   aspect-ratio: 1;
 `;
+
+const StyledSubheading = styled(Subheading)`
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+`;
+
+const ShipWrapper = styled.div``;
