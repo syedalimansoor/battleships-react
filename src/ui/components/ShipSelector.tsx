@@ -26,6 +26,7 @@ export default function ShipSelector(props: Props) {
         const ship = getShip(props.playerIndex, shipId);
         return (
           <AvailableShip
+            key={shipId}
             ship={ship}
             onClick={handleShipClick}
             selected={fleet.selected === ship.id}
