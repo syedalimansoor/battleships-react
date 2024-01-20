@@ -25,38 +25,45 @@ export default function Grid(props: Props) {
   };
 
   return (
-    <StyledGrid>
-      <SquareLayer>
-        {grid.map((squares) =>
-          squares.map((square) => (
-            <Square
-              square={square}
-              key={`${square.location.column}-${square.location.row}`}
-              onClick={handleSquareClick}
-            />
-          ))
-        )}
-      </SquareLayer>
-      <ShipLayer>
-        {fleet.ships
-          .filter((ship) => fleet.placedShips.includes(ship.id))
-          .map((ship) => (
-            <GridShip key={ship.id} ship={ship} />
-          ))}
-      </ShipLayer>
-    </StyledGrid>
+    <GridWrapper>
+      <StyledGrid>
+        <SquareLayer>
+          {grid.map((squares) =>
+            squares.map((square) => (
+              <Square
+                square={square}
+                key={`${square.location.column}-${square.location.row}`}
+                onClick={handleSquareClick}
+              />
+            ))
+          )}
+        </SquareLayer>
+        <ShipLayer>
+          {fleet.ships
+            .filter((ship) => fleet.placedShips.includes(ship.id))
+            .map((ship) => (
+              <GridShip key={ship.id} ship={ship} />
+            ))}
+        </ShipLayer>
+      </StyledGrid>
+    </GridWrapper>
   );
 }
 
-const StyledGrid = styled.div`
+const GridWrapper = styled.div`
   width: 100%;
   aspect-ratio: 1;
   background-color: ${(p) => p.theme.color.blue4};
   border-radius: 10px;
   padding: ${(p) => p.theme.padding.inline};
+`;
 
+const StyledGrid = styled.div`
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template: repeat(${GRID_SIZE}, 1fr) / repeat(${GRID_SIZE}, 1fr);
+  position: relative;
 `;
 
 const SquareLayer = styled.div`

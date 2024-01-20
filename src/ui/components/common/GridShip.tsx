@@ -1,3 +1,4 @@
+import { GRID_SIZE } from "src/domain/constants";
 import { Ship, ShipCategories, ShipOrientation } from "src/domain/game";
 import styled from "styled-components";
 import FlatEnd from "ui/assets/ship-parts/flat-end.svg?react";
@@ -69,8 +70,11 @@ const PartsWrapper = styled.div<{
     transform: scaleX(-1) translateX(1px);
   }
 
-  grid-row: ${(p) => p.$row} / span ${(p) => p.$height};
-  grid-column: ${(p) => p.$column} / span ${(p) => p.$width};
+  position: absolute;
+  width: ${(p) => (p.$width / GRID_SIZE) * 100}%;
+  height: ${(p) => (p.$height / GRID_SIZE) * 100}%;
+  top: ${(p) => ((p.$row - 1) / GRID_SIZE) * 100}%;
+  left: ${(p) => ((p.$column - 1) / GRID_SIZE) * 100}%;
 `;
 
 const ShipBody = styled.div`
