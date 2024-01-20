@@ -75,6 +75,8 @@ const PartsWrapper = styled.div<{
   height: ${(p) => (p.$height / GRID_SIZE) * 100}%;
   top: ${(p) => ((p.$row - 1) / GRID_SIZE) * 100}%;
   left: ${(p) => ((p.$column - 1) / GRID_SIZE) * 100}%;
+
+  transition: 200ms ease;
 `;
 
 const ShipBody = styled.div`
