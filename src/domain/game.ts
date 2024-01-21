@@ -26,7 +26,6 @@ export type Fleet = {
   ships: Ship[];
   unplacedShips: string[];
   placedShips: string[];
-  selected: string | null;
 };
 
 export type Square = {

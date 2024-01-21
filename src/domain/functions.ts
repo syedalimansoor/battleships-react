@@ -7,7 +7,6 @@ import {
   Ship,
   ShipCategories,
   ShipOrientation,
-  Square,
 } from "./game";
 import { v4 as uuid } from "uuid";
 
@@ -93,82 +92,8 @@ function initializeFleet(): Fleet {
   ];
 
   return {
-    selected: null,
     ships,
     unplacedShips: ships.map((ship) => ship.id),
     placedShips: [],
   };
-}
-
-/**
- * Selects a ship from the fleet to be ready for placement on the grid. If the ship is already selected, then it will deselect the ship.
- */
-export function selectShip(fleet: Fleet, ship: Ship): Fleet {
-  let newFleet: Fleet;
-  if (fleet.selected && fleet.selected === ship.id) {
-    newFleet = { ...fleet, selected: null };
-  } else {
-    newFleet = { ...fleet, selected: ship.id };
-  }
-  return newFleet;
-}
-
-/**
- * This places the ship on the Grid, but does not confirm its position.
- * It will:
- * - move the ship from unplacedShips to placedShips
- * - add all covered squares to the ship's squareList
- * - check for invalid positions
- * @returns the updated fleet
- */
-export function placeShip(
-  grid: Grid,
-  square: Square,
-  fleet: Fleet,
-  ship: Ship
-) {
-  let newFleet: Fleet = { ...fleet };
-
-  // move ship from unplacedShips to placedShips
-  if (fleet.unplacedShips.includes(ship.id)) {
-    const newUnplacedShips = fleet.unplacedShips.filter(
-      (shipId) => shipId !== ship.id
-    );
-    const newPlacedShips = [...fleet.placedShips, ship.id];
-    newFleet = {
-      ...newFleet,
-      placedShips: newPlacedShips,
-      unplacedShips: newUnplacedShips,
-    };
-  }
-
-  // add all covered squares to the ship's squareList
-  const squareList: Square[] = [];
-  const { row, column } = square.location;
-
-  switch (ship.orientation) {
-    case ShipOrientation.Horizontal:
-      for (let squareIndex = 0; squareIndex < ship.length; squareIndex++) {
-        try {
-          squareList.push(grid[row][column + squareIndex]);
-        } catch (error) {
-          console.log("Invalid position!");
-        }
-      }
-      break;
-    case ShipOrientation.Vertical:
-      for (let squareIndex = 0; squareIndex < ship.length; squareIndex++) {
-        try {
-          squareList.push(grid[row + GRID_SIZE * squareIndex][column]);
-        } catch (error) {
-          console.log("Invalid position!");
-        }
-      }
-  }
-
-  const newShip: Ship = { ...ship, squares: squareList };
-  const shipIndex = fleet.ships.findIndex((ship) => ship.id === newShip.id);
-  newFleet.ships.splice(shipIndex, 1, newShip);
-
-  return newFleet;
 }
