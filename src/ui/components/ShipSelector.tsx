@@ -43,6 +43,6 @@ const Wrapper = styled.div`
   border-radius: 10px 10px 0 0;
 
   display: flex;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
 `;
