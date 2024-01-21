@@ -1,8 +1,12 @@
 import { GRID_SIZE } from "src/domain/constants";
-import { PlayerIndex } from "src/domain/game";
+import { PlayerIndex, Ship } from "src/domain/game";
 import styled from "styled-components";
-import { useGrid } from "../stores/game";
+import { useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
+import { useSelectedShipId } from "../stores/selectedShipId";
+import { useStore } from "@nanostores/react";
+import $activePlayerIndex from "../stores/activePlayerIndex";
+import PlacingShip from "./ships/PlacingShip";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -10,6 +14,13 @@ type Props = {
 
 export default function Grid(props: Props) {
   const [grid] = useGrid(props.playerIndex);
+  const [fleet] = useFleet(props.playerIndex);
+  const [selectedShipId] = useSelectedShipId();
+
+  let selectedShip: Ship | undefined;
+  if (selectedShipId) {
+    selectedShip = fleet.ships.find((ship) => ship.id === selectedShipId);
+  }
 
   return (
     <GridWrapper>
@@ -24,6 +35,9 @@ export default function Grid(props: Props) {
             ))
           )}
         </SquareLayer>
+        <ShipLayer>
+          {selectedShip && <PlacingShip ship={selectedShip} />}
+        </ShipLayer>
       </StyledGrid>
     </GridWrapper>
   );
@@ -46,5 +60,9 @@ const StyledGrid = styled.div`
 `;
 
 const SquareLayer = styled.div`
+  display: contents;
+`;
+
+const ShipLayer = styled.div`
   display: contents;
 `;
