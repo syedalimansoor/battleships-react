@@ -4,8 +4,6 @@ import styled from "styled-components";
 import { useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
 import { useSelectedShipId } from "../stores/selectedShipId";
-import { useStore } from "@nanostores/react";
-import $activePlayerIndex from "../stores/activePlayerIndex";
 import PlacingShip from "./ships/PlacingShip";
 
 type Props = {
