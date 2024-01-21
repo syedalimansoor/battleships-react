@@ -4,7 +4,7 @@ import Grid from "../components/Grid";
 import Heading from "../components/common/Heading";
 import Subheading from "../components/common/Subheading";
 import ShipSelector from "../components/ShipSelector";
-import { useFleet } from "../stores/game";
+import { useSelectedShipId } from "../stores/selectedShipId";
 
 const PLAYER_INDEX = 0;
 
@@ -24,12 +24,12 @@ export default function Planning() {
 }
 
 const ActionIndicator = () => {
-  const [fleet] = useFleet(PLAYER_INDEX);
+  const [selectedShipId] = useSelectedShipId();
 
   return (
     <StyledSubheading>
-      {fleet.selected
-        ? "Tap on a square to place the ship."
+      {selectedShipId
+        ? "Drag the ship to the correct position."
         : "Tap on a ship to select it."}
     </StyledSubheading>
   );
