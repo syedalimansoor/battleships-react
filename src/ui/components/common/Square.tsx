@@ -22,11 +22,19 @@ const Square = (props: Props) => {
 };
 
 const StyledSquare = styled.div<{ $row: number; $column: number }>`
-  &:not(:nth-of-type(${GRID_SIZE}n + 1)) {
-    border-left: 3px solid ${(p) => p.theme.color.blue5};
+  border: 2px solid ${(p) => p.theme.color.blue5};
+
+  &:nth-of-type(-n + ${GRID_SIZE}) {
+    border-top-color: transparent;
   }
-  &:nth-of-type(n + ${GRID_SIZE + 1}) {
-    border-top: 3px solid ${(p) => p.theme.color.blue5};
+  &:nth-last-of-type(-n + ${GRID_SIZE}) {
+    border-bottom-color: transparent;
+  }
+  &:nth-of-type(${GRID_SIZE}n) {
+    border-right-color: transparent;
+  }
+  &:nth-last-of-type(${GRID_SIZE}n) {
+    border-left-color: transparent;
   }
 
   grid-row: ${(p) => p.$row};
