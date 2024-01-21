@@ -45,9 +45,8 @@ export default function ShipSelector(props: Props) {
 }
 
 const Wrapper = styled.div`
-  min-height: 200px;
-  padding: ${(p) => p.theme.padding.inline} ${(p) => p.theme.padding.inline}
-    40px;
+  min-height: 180px;
+  padding: ${(p) => p.theme.padding.inline} ${(p) => p.theme.padding.inline};
   background-color: ${(p) => p.theme.color.blue4};
   border-radius: 10px 10px 0 0;
 
