@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function UnplacedShip(props: Props) {
-  const { ship, selected } = props;
+  const { ship } = props;
 
   const handleClick = () => {
     props.onClick && props.onClick(ship.id);
@@ -19,19 +19,16 @@ export default function UnplacedShip(props: Props) {
   return (
     <ShipWrapper onClick={handleClick}>
       <StyledSubheading>{ship.name}</StyledSubheading>
-      <PartsWrapper $selected={selected}>
+      <ShipImageWrapper>
         <ShipImage ship={ship} />
-      </PartsWrapper>
+      </ShipImageWrapper>
     </ShipWrapper>
   );
 }
 
-const PartsWrapper = styled.div<{ $selected?: boolean }>`
+const ShipImageWrapper = styled.div`
   height: 35px;
   display: flex;
-  transition: filter 200ms ease;
-  filter: ${(p) =>
-    p.$selected ? `drop-shadow(0 0 5px ${p.theme.color.yellow5})` : `none`};
 `;
 
 const StyledSubheading = styled(Subheading)`
