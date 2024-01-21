@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 type Props = {
   square: Square;
-  onClick: (square: Square) => void;
+  onClick?: (square: Square) => void;
 };
 
 const Square = (props: Props) => {
   const { square } = props;
   const handleClick = () => {
-    props.onClick(square);
+    props.onClick && props.onClick(square);
   };
 
   const gridRow = square.location.row + 1;

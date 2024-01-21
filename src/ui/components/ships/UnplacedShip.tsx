@@ -1,19 +1,19 @@
 import { type Ship } from "src/domain/game";
 import styled from "styled-components";
-import Subheading from "./Subheading";
-import ShipImage from "./Ship";
+import Subheading from "../common/Subheading";
+import ShipImage from "./ShipImage";
 
 type Props = {
   ship: Ship;
-  onClick: (shipId: string) => void;
-  selected: boolean;
+  onClick?: (shipId: string) => void;
+  selected?: boolean;
 };
 
-export default function AvailableShip(props: Props) {
+export default function UnplacedShip(props: Props) {
   const { ship, selected } = props;
 
   const handleClick = () => {
-    props.onClick(ship.id);
+    props.onClick && props.onClick(ship.id);
   };
 
   return (

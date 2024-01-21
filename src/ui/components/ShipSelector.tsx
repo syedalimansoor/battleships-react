@@ -1,37 +1,20 @@
-import { Fleet, PlayerIndex } from "src/domain/game";
+import { PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
 import { getShip, useFleet } from "../stores/game";
-import AvailableShip from "./common/AvailableShip";
+import UnplacedShip from "./ships/UnplacedShip";
 
 type Props = {
   playerIndex: PlayerIndex;
 };
 
 export default function ShipSelector(props: Props) {
-  const [fleet, setFleet] = useFleet(props.playerIndex);
-
-  const handleShipClick = (shipId: string) => {
-    let newFleet: Fleet;
-    if (fleet.selected === shipId) {
-      newFleet = { ...fleet, selected: null };
-    } else {
-      newFleet = { ...fleet, selected: shipId };
-    }
-    setFleet(newFleet);
-  };
+  const [fleet] = useFleet(props.playerIndex);
 
   return (
     <Wrapper>
       {fleet.unplacedShips.map((shipId) => {
         const ship = getShip(props.playerIndex, shipId);
-        return (
-          <AvailableShip
-            key={shipId}
-            ship={ship}
-            onClick={handleShipClick}
-            selected={fleet.selected === ship.id}
-          />
-        );
+        return <UnplacedShip key={shipId} ship={ship} />;
       })}
     </Wrapper>
   );

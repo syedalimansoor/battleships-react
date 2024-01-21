@@ -18,16 +18,9 @@ export type Player = {
 
 export type Ship = {
   id: string;
-  positionStatus: ShipPositionStatus;
   orientation: ShipOrientation;
   squares: Square[];
 } & (Carrier | Battleship | Destroyer | Submarine | PatrolBoat);
-
-export enum ShipPositionStatus {
-  Default,
-  Placing,
-  Placed,
-}
 
 export type Fleet = {
   ships: Ship[];
