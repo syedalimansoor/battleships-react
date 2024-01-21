@@ -1,12 +1,11 @@
 import { GRID_SIZE } from "src/domain/constants";
-import { PlayerIndex, Ship } from "src/domain/game";
+import { PlayerIndex } from "src/domain/game";
 import styled from "styled-components";
-import { useFleet, useGrid } from "../stores/game";
+import { useGrid } from "../stores/game";
 import Square from "./common/Square";
-import { useSelectedShipId } from "../stores/selectedShipId";
-import PlacingShip from "./ships/PlacingShip";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import PlacingShipLayer from "./PlacingShipLayer";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -14,13 +13,6 @@ type Props = {
 
 export default function Grid(props: Props) {
   const [grid] = useGrid(props.playerIndex);
-  const [fleet] = useFleet(props.playerIndex);
-  const [selectedShipId] = useSelectedShipId();
-
-  let selectedShip: Ship | undefined;
-  if (selectedShipId) {
-    selectedShip = fleet.ships.find((ship) => ship.id === selectedShipId);
-  }
 
   return (
     <GridWrapper>
@@ -36,9 +28,8 @@ export default function Grid(props: Props) {
               ))
             )}
           </SquareLayer>
-          <ShipLayer>
-            {selectedShip && <PlacingShip ship={selectedShip} />}
-          </ShipLayer>
+          <ShipLayer></ShipLayer>
+          <PlacingShipLayer playerIndex={props.playerIndex} />
         </StyledGrid>
       </DndProvider>
     </GridWrapper>
