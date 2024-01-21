@@ -5,6 +5,8 @@ import { useFleet, useGrid } from "../stores/game";
 import Square from "./common/Square";
 import { useSelectedShipId } from "../stores/selectedShipId";
 import PlacingShip from "./ships/PlacingShip";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 type Props = {
   playerIndex: PlayerIndex;
@@ -22,21 +24,23 @@ export default function Grid(props: Props) {
 
   return (
     <GridWrapper>
-      <StyledGrid>
-        <SquareLayer>
-          {grid.map((squares) =>
-            squares.map((square) => (
-              <Square
-                square={square}
-                key={`${square.location.column}-${square.location.row}`}
-              />
-            ))
-          )}
-        </SquareLayer>
-        <ShipLayer>
-          {selectedShip && <PlacingShip ship={selectedShip} />}
-        </ShipLayer>
-      </StyledGrid>
+      <DndProvider backend={HTML5Backend} options={{ enableMouseEvents: true }}>
+        <StyledGrid>
+          <SquareLayer>
+            {grid.map((squares) =>
+              squares.map((square) => (
+                <Square
+                  square={square}
+                  key={`${square.location.column}-${square.location.row}`}
+                />
+              ))
+            )}
+          </SquareLayer>
+          <ShipLayer>
+            {selectedShip && <PlacingShip ship={selectedShip} />}
+          </ShipLayer>
+        </StyledGrid>
+      </DndProvider>
     </GridWrapper>
   );
 }

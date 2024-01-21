@@ -2,6 +2,8 @@ import { Ship, ShipOrientation } from "src/domain/game";
 import ShipImage from "./ShipImage";
 import styled from "styled-components";
 import { GRID_SIZE } from "src/domain/constants";
+import { useDrag } from "react-dnd";
+import { DndTypes } from "src/ui/constants";
 
 type Props = {
   ship: Ship;
@@ -10,8 +12,15 @@ type Props = {
 export default function PlacingShip(props: Props) {
   const { ship } = props;
 
+  const [, drag] = useDrag(() => ({
+    type: DndTypes.Ship,
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
   return (
-    <ShipImageWrapper $orientation={ship.orientation}>
+    <ShipImageWrapper $orientation={ship.orientation} ref={drag}>
       <ShipImage ship={ship} />
     </ShipImageWrapper>
   );
